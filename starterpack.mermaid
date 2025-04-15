@@ -2,17 +2,21 @@
 title: Starter pack Systemic study
 ---
 graph LR
-    subgraph "Usages"
+    subgraph IAGenerative
         A1["Utilisation Starter Pack"] -- S --> B1["Qualité des prompts"]
         B1 -- S --> C1["Résultats efficaces"]
         C1 -- S --> A1
+    end
+    
+    subgraph ReseauxSociaux
         L1["Publication reseaux sociaux"]
         L1 -- S --> M1["Commentaires positifs"]
         L1 -- S --> M2["Commentaires negatifs"]
+        M2 -- O --> L1
+        M1 -- S --> L1
+		end
 
-    end
-
-	  subgraph "Fournisseur"
+	  subgraph Fournisseurs
         J1["Augmentation données d'entraînement"]
         J1 -- S --> K1["Amélioration modèles"]
         J1 -- S --> O1["Recours aux modérateurs"] 
@@ -20,10 +24,11 @@ graph LR
     end
 
 
-    subgraph "Créativité"
+    subgraph Creativite
         D1["Dépendance aux prompts"] -- S --> E1["Standardisation"]
         E1 -- S --> F1["Perte de créativité"]
-        F1 -- O --> D1
+        E1 -- S --> F2["Perte de compétences critiques"]
+        F1 -- S --> D1
     end
 
     subgraph "Ressources"
@@ -38,22 +43,17 @@ graph LR
     end
 
     %% Connexions inter-systèmes
-    A1 -- O --> G1
-    A1 -- S --> J1
-		C1 -- S --> D1
-		K1 -- S --> C1
-    J1 -- O --> G1
-    C1 -- S --> L1
-    M1 -- S --> A1
-    M2 -- O --> A1
-    D1 -- S --> A1
-		L1 -- O --> G1
-    J1 -- O --> N1
-    O1 -- O --> P1
-    N1 -- S --> M2
-    P1 -- S --> M2
-    G1 -- S --> M2
-    F1 -- O --> M2
-    F1 -- O --> M1
-    %% S = Boucle de renforcement (positive)
-    %% O = Boucle d'équilibrage (négative)
+		IAGenerative -- S --> Fournisseurs
+		Fournisseurs -- S --> IAGenerative
+		IAGenerative -- O --> Creativite
+		Fournisseurs -- O --> Droits
+		IAGenerative -- O --> Ressources
+		Fournisseurs -- O --> Ressources
+		ReseauxSociaux -- O --> IAGenerative
+		ReseauxSociaux -- S --> IAGenerative
+		Droits -- S --> M2						
+		Ressources -- S --> M2
+		Creativite -- O --> IAGenerative
+
+%% S = Boucle de renforcement (positive)
+  %% O = Boucle d'équilibrage (négative)
