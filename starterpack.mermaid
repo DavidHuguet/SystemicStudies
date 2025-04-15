@@ -7,13 +7,31 @@ graph LR
         B1 -- S --> C1["Résultats efficaces"]
         C1 -- S --> A1
     end
+
+    subgraph SatisfactionImmediate
+        E3["Validation sociale"] -- S --> F3["Dopamine"]
+        F3 -- S --> G3["Désir de publication"]
+        G3 -- S --> E3
+		end
+
+    subgraph SatisfactionDurable
+				I4["Accomplissement"]
+        I4 -- S --> J4["Confort"]
+		end
+
+
+	
+		subgraph Anxiete
+        E4["Anxiete écologique"] 
+        F4["Anxiete sociale"]
+    end
     
     subgraph ReseauxSociaux
         L1["Publication reseaux sociaux"]
-        L1 -- S --> M1["Commentaires positifs"]
-        L1 -- S --> M2["Commentaires negatifs"]
-        M2 -- O --> L1
-        M1 -- S --> L1
+        L1 -- S --> B2["Obtention de likes"]
+        B2 -- S --> C2["Sentiment de reconnaissance"]
+        C2 -- S --> D2["Augmentation de l'engagement"]
+        D2 -- S --> L1
 		end
 
 	  subgraph Fournisseurs
@@ -29,31 +47,41 @@ graph LR
         E1 -- S --> F1["Perte de créativité"]
         E1 -- S --> F2["Perte de compétences critiques"]
         F1 -- S --> D1
+        H4["Expression personnelle"] 
+        F1 -- O --> H4
+        F2 -- O --> H4      
     end
 
-    subgraph "Ressources"
+    subgraph Ressources
         G1["Consommation ressources"] -- S --> H1["Coûts opérationnels"]
         H1 -- S --> I1["Barrières d'accès"]
         I1 -- O --> G1
     end
    
-	 subgraph "Droits"
+	 subgraph Droits
         N1["Respect du droit d'auteur"] 
-        P1["Esclaves du web"] 
+        P1["Respect des droits humains"] 
     end
 
     %% Connexions inter-systèmes
 		IAGenerative -- S --> Fournisseurs
+		IAGenerative -- S --> SatisfactionImmediate
 		Fournisseurs -- S --> IAGenerative
 		IAGenerative -- O --> Creativite
 		Fournisseurs -- O --> Droits
 		IAGenerative -- O --> Ressources
 		Fournisseurs -- O --> Ressources
-		ReseauxSociaux -- O --> IAGenerative
 		ReseauxSociaux -- S --> IAGenerative
-		Droits -- S --> M2						
-		Ressources -- S --> M2
+		SatisfactionImmediate -- S --> IAGenerative
+		SatisfactionImmediate -- S --> ReseauxSociaux
+   	ReseauxSociaux -- S --> SatisfactionImmediate
+		IAGenerative -- S --> ReseauxSociaux
 		Creativite -- O --> IAGenerative
+		SatisfactionDurable -- S --> Creativite
+		Ressources -- S --> E4
+		Droits -- S --> F4
+		H4 -- S --> I4
+		Anxiete -- O --> J4
 
 %% S = Boucle de renforcement (positive)
-  %% O = Boucle d'équilibrage (négative)
+%% O = Boucle d'équilibrage (négative)
