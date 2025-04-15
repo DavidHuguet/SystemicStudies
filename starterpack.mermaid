@@ -1,0 +1,59 @@
+---
+title: Starter pack Systemic study
+---
+graph LR
+    subgraph "Usages"
+        A1["Utilisation Starter Pack"] -- S --> B1["Qualité des prompts"]
+        B1 -- S --> C1["Résultats efficaces"]
+        C1 -- S --> A1
+        L1["Publication reseaux sociaux"]
+        L1 -- S --> M1["Commentaires positifs"]
+        L1 -- S --> M2["Commentaires negatifs"]
+
+    end
+
+	  subgraph "Fournisseur"
+        J1["Augmentation données d'entraînement"]
+        J1 -- S --> K1["Amélioration modèles"]
+        J1 -- S --> O1["Recours aux modérateurs"] 
+        O1 -- S --> K1
+    end
+
+
+    subgraph "Créativité"
+        D1["Dépendance aux prompts"] -- S --> E1["Standardisation"]
+        E1 -- S --> F1["Perte de créativité"]
+        F1 -- O --> D1
+    end
+
+    subgraph "Ressources"
+        G1["Consommation ressources"] -- S --> H1["Coûts opérationnels"]
+        H1 -- S --> I1["Barrières d'accès"]
+        I1 -- O --> G1
+    end
+   
+	 subgraph "Droits"
+        N1["Respect du droit d'auteur"] 
+        P1["Esclaves du web"] 
+    end
+
+    %% Connexions inter-systèmes
+    A1 -- O --> G1
+    A1 -- S --> J1
+		C1 -- S --> D1
+		K1 -- S --> C1
+    J1 -- O --> G1
+    C1 -- S --> L1
+    M1 -- S --> A1
+    M2 -- O --> A1
+    D1 -- S --> A1
+		L1 -- O --> G1
+    J1 -- O --> N1
+    O1 -- O --> P1
+    N1 -- S --> M2
+    P1 -- S --> M2
+    G1 -- S --> M2
+    F1 -- O --> M2
+    F1 -- O --> M1
+    %% S = Boucle de renforcement (positive)
+    %% O = Boucle d'équilibrage (négative)
